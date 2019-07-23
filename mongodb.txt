@@ -1,0 +1,50 @@
+创建用户
+docker run --name mongo  -p 11011:27017 -v /home/yimym/mongocfg:/data/configdb -v /home/yimym/mongo:/data/db -d 120.76.115.230:8443/mongo:1612r1 --auth
+
+docker run -p 27017:27017 -v $PWD/db:/data/db -d mongo:3.2
+
+#进入容器
+docker exec -it mongo /bin/bash
+
+#进入Mongo
+mongo
+
+#切库，新增用户
+use admin;
+
+db.createUser({ user: "root", pwd: "nomes_8129@yimym", roles: [{ role: "userAdminAnyDatabase", db: "admin" }] });
+db.auth('root','nomes_8129@yimym');
+exit
+mongo admin -u root -p nomes_8129@yimym
+use yimym;
+db.createUser({user: "root", pwd: "nomes_8129@yimym", roles: [ { role: "readWrite", db: "yimym" }]});
+
+
+数据导出
+mongoexport -h 120.76.115.230 --port 12011 -u root -p nomes_8129@yimym  -d yimym -c server_info -o /home/server_info
+        参数说明：
+            -d ：数据库名
+            -c ：collection名
+            -o ：输出的文件名
+            --type ： 输出的格式，默认为json
+            -f ：输出的字段，如果-type为csv，则需要加上-f "字段名"
+数据导入
+mongoimport -u root -p nomes_8129@yimym -d yimym -c server_info --file /home/server_info
+        参数说明：
+            -d ：数据库名
+            -c ：collection名
+            --type ：导入的格式默认json
+            -f ：导入的字段名
+            --headerline ：如果导入的格式是csv，则可以使用第一行的标题作为导入的字段
+            --file ：要导入的文件
+mongoimport -d mongotest -c users --file /home/users.json
+
+
+MongoDB数据库备份
+mongodump -h dbhost -d dbname -o dbdirectory
+mongodump -h 120.76.115.230 --port 12011 -u root -p nomes_8129@yimym -d yimym -o /mongodump190723
+mongodump -u root -p nomes_8129@yimym -d yimym -o /home/mongodump11/
+MongoDB数据库恢复
+mongorestore -h dbhost -d dbname --dir dbdirectory
+mongorestore -h 192.168.0.11 --port 11011 -u root -p nomes_8129@yimym -d yimym --dir /home/mongodump11/yimym
+mongorestore -h 120.76.115.230 --port 12011 -u root -p nomes_8129@yimym -d yimym --dir /home/mongodump/yimym

@@ -1,0 +1,25 @@
+﻿----------------------
+文件夹递归查找字符串
+grep -r "string" ./
+
+----------------------
+清空文件
+linux中快速清空文件内容的几种方法
+这篇文章主要介绍了linux中快速清空文件内容的几种方法,需要的朋友可以参考下
+
+$ : > filename 
+$ > filename 
+$ echo "" > filename 
+$ echo > filename 
+$ cat /dev/null > filename
+
+----------------------
+有时候，你会想手动跟踪命令的输出内容，同时又想将输出的内容写入文件，确保之后可以用来参考
+tee
+
+https://linux.cn/article-9435-1.html
+
+
+------------------------
+删除子目录下的git目录
+ find . -type d -name ".git" |xargs rm -rvf

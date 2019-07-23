@@ -1,0 +1,9 @@
+中服云对接
+接口调用地址:http://my.cserver.com.cn
+
+单点调用地址:http://sso.cserver.com.cn
+
+
+appid:cserverffe8fd5286bf44a9bc1fddf80e3d02a7
+
+appkey:f85a7dc0a87129c049f5d19e149021158fddedaa188b1c3231c455ec2a92c36e

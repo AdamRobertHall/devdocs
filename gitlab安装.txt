@@ -1,0 +1,44 @@
+﻿gitlab安装
+centos
+yum install curl
+curl -s https://packages.gitlab.com/install/repositories/gitlab/gitlab-ce/script.rpm.sh | sudo bash
+sudo yum install gitlab-ce-12.0.2-ce.0.el7.x86_64
+gitlab-ctl reconfigure
+参考文档 https://packages.gitlab.com/gitlab/gitlab-ce/packages/el/7/gitlab-ce-12.0.2-ce.0.el7.x86_64.rpm
+
+ubuntu
+curl -s https://packages.gitlab.com/install/repositories/gitlab/gitlab-ce/script.deb.sh | sudo bash
+sudo apt-get install gitlab-ce=11.11.4-ce.0
+gitlab-ctl reconfigure
+参考文档 https://packages.gitlab.com/gitlab/gitlab-ce/packages/ubuntu/bionic/gitlab-ce_12.0.2-ce.0_amd64.deb
+
+debian
+curl -s https://packages.gitlab.com/install/repositories/gitlab/gitlab-ce/script.deb.sh | sudo bash
+sudo apt-get install gitlab-ce=12.0.2-ce.0
+gitlab-ctl reconfigure
+参考文档 https://packages.gitlab.com/gitlab/gitlab-ce/packages/debian/stretch/gitlab-ce_12.0.2-ce.0_amd64.deb
+
+opensuse
+curl -s https://packages.gitlab.com/install/repositories/gitlab/gitlab-ce/script.rpm.sh | sudo bash
+sudo zypper install gitlab-ce-12.0.2-ce.0.sles42.x86_64
+gitlab-ctl reconfigure
+参考文档 https://packages.gitlab.com/gitlab/gitlab-ce/packages/opensuse/42.3/gitlab-ce-12.0.2-ce.0.sles42.x86_64.rpm
+
+docker
+
+docker pull beginor/gitlab-ce:11.3.0-ce.0
+sudo mkdir -p /mnt/sda1/gitlab/etc
+sudo mkdir -p /mnt/sda1/gitlab/log
+sudo mkdir -p /mnt/sda1/gitlab/data
+docker run \
+    --detach \
+    --publish 8443:443 \
+    --publish 8080:80 \
+    --name gitlab \
+    --restart unless-stopped \
+    --volume /mnt/sda1/gitlab/etc:/etc/gitlab \
+    --volume /mnt/sda1/gitlab/log:/var/log/gitlab \
+    --volume /mnt/sda1/gitlab/data:/var/opt/gitlab \
+    beginor/gitlab-ce:11.3.0-ce.0
+
+参考文档 https://hub.docker.com/r/beginor/gitlab-ce/

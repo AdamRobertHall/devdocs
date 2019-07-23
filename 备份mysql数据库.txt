@@ -1,0 +1,20 @@
+备份mysql数据库
+【43affd72e31d】:  mysql 容器id
+【yimym】: 要备份的数据库名称
+【yimymBak05151537】: 备份数据库名称
+根据实际情况替换这三个信息，其他不变
+
+连续输入三次mysql root密码：nomes_8129@yimym
+最后等命令执行结束就好了
+
+// 筛选mysql容器
+docker ps | grep mysql
+// 进入mysql容器
+docker exec -it 43affd72e31d /bin/bash  
+// 执行备份数据库命令
+echo CREATE DATABASE yimymBak05151537 DEFAULT CHARACTER SET UTF8 COLLATE UTF8_GENERAL_CI | mysql -u root -p  --port=3306 && mysqldump  -u root -p  --port=3306 yimym  | mysql   -u root -p  --port=3306 yimymBak05151537
+
+
+
+
+

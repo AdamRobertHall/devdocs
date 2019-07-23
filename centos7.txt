@@ -1,0 +1,28 @@
+------------------------------------------------------------------------------
+centOS7下安装GUI图形界面
+yum -y groupinstall "GNOME Desktop" "Graphical Administration Tools"
+reboot
+
+------------------------------------------------------------------------------
+CentOS7 设置或关闭形界面
+查看默认的target，执行：
+systemctl get-default
+开机以命令模式启动，执行：
+systemctl set-default multi-user.target
+开机以图形界面启动，执行：
+systemctl set-default graphical.target
+
+------------------------------------------------------------------------------
+如果想系统默认以某种方式启动， 使用systemd创建符号链接指向默认运行级别。
+1.首先删除已经存在的符号链接：
+rm /etc/systemd/system/default.target 
+2.默认级别转换为3(文本模式)： 
+ln -sf /lib/systemd/system/multi-user.target /etc/systemd/system/default.target 
+或者默认级别转换为5(图形模式)：
+ln -sf /lib/systemd/system/graphical.target /etc/systemd/system/default.target 
+
+------------------------------------------------------------------------------
+安装 ssh
+yum install -y openssl openssh-server
+vim /etc/ssh/sshd_config
+PermitRootLogin=yes

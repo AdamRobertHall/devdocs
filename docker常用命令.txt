@@ -1,0 +1,7 @@
+删除指定容器
+docker rmi `docker images -q | awk '/^<none>/ { print $3 }'`
+
+docker进入容器
+sudo docker exec -it 775c7c9ee1e1 /bin/bash  
+
+

@@ -1,0 +1,3 @@
+git config --global user.name zhangyaodong
+git config --global user.email zhangyaodong@163.com
+ssh-keygen -t rsa -C zhangyaodong@163.com

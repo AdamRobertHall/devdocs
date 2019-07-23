@@ -1,0 +1,18 @@
+举个例子：
+
+mvn deploy:deploy-file -DgroupId=alibaba  -DartifactId=sms -Dversion=20160607 -Dpackaging=jar -Dfile=E:\repository\alibaba\sms\20160607\sms-20160607.jar -Durl=http://192.168.0.212:8887/repository/third-library/  -DrepositoryId=third-library
+
+
+mvn deploy:deploy-file -DgroupId=alibaba  -DartifactId=sms -Dversion=20160607 -Dpackaging=jar -Dfile=E:\repository\alibaba\sms\20160607\sms-20160607.jar -Durl=http://192.168.0.212:8887/repository/third-library/  -DrepositoryId=third-library
+
+mvn deploy:deploy-file \
+-DgroupId=com.yimym  \
+-DartifactId=MyMSqlToken \
+-Dversion=0.0.1-SNAPSHOT \
+-Dpackaging=jar \
+-Dfile=E:\repository\com\yimym\MyMSqlToken\0.0.1-SNAPSHOT\MyMSqlToken-0.0.1-SNAPSHOT.jar \
+-Durl=http://192.168.0.212:8887/repository/third-library/  \
+-DrepositoryId=third-library
+
+
+mvn deploy:deploy-file -DgroupId=com.yimym  -DartifactId=MyMSqlToken -Dversion=0.0.1-SNAPSHOT -Dpackaging=jar -Dfile=E:\repository\com\yimym\MyMSqlToken\0.0.1-SNAPSHOT\MyMSqlToken-0.0.1-SNAPSHOT.jar -Durl=http://192.168.0.212:8887/repository/third-library/  -DrepositoryId=third-library

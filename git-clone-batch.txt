@@ -1,0 +1,23 @@
+git clone git@192.168.0.212:root/server-config.git
+git clone git@192.168.0.212:root/nomes-mobile.git
+git clone git@192.168.0.212:root/s-equip.git
+git clone git@192.168.0.212:root/nomesdocs.git
+git clone git@192.168.0.212:root/yimym-secondary-dev-manage.git
+git clone git@192.168.0.212:root/s-base.git
+git clone git@192.168.0.212:root/nomes_one_page_view.git
+git clone git@192.168.0.212:root/yimym-secondary-dev-demo.git
+git clone git@192.168.0.212:root/registry.git
+git clone git@192.168.0.212:root/m-relman.git
+git clone git@192.168.0.212:root/s-public.git
+git clone git@192.168.0.212:root/p-message.git
+git clone git@192.168.0.212:root/i-lanshi.git
+git clone git@192.168.0.212:root/s-planmng.git
+git clone git@192.168.0.212:root/platform-manager.git
+git clone git@192.168.0.212:root/gateway.git
+git clone git@192.168.0.212:root/s-order.git
+git clone git@192.168.0.212:root/p-gateway.git
+git clone git@192.168.0.212:root/certificate-of-quality.git
+git clone git@192.168.0.212:root/s-invmng.git
+git clone git@192.168.0.212:root/nomespc.git
+git clone git@192.168.0.212:root/auth.git
+

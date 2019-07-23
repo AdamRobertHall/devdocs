@@ -1,0 +1,11 @@
+基础服务 s-base
+公共服务 s-public   编码方案 流程 文件服务
+订单服务 s-order
+生产计划 s-planmng  计划 工单 报功 检验
+库存服务 s-invmng
+设备服务 s-equip
+
+平台服务 auth
+消息服务 p-message
+
+http://192.168.0.20/svn/s-public/trunk

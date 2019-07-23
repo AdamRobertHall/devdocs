@@ -1,0 +1,111 @@
+cd server-config
+git add .
+git commit -m init
+git push origin master
+cd ..
+cd nomes-mobile
+git add .
+git commit -m init
+git push origin master
+cd ..
+cd s-equip
+git add .
+git commit -m init
+git push origin master
+cd ..
+cd nomesdocs
+git add .
+git commit -m init
+git push origin master
+cd ..
+cd yimym-secondary-dev-manage
+git add .
+git commit -m init
+git push origin master
+cd ..
+cd s-base
+git add .
+git commit -m init
+git push origin master
+cd ..
+cd nomes_one_page_view
+git add .
+git commit -m init
+git push origin master
+cd ..
+cd yimym-secondary-dev-demo
+git add .
+git commit -m init
+git push origin master
+cd ..
+cd registry
+git add .
+git commit -m init
+git push origin master
+cd ..
+cd m-relman
+git add .
+git commit -m init
+git push origin master
+cd ..
+cd s-public
+git add .
+git commit -m init
+git push origin master
+cd ..
+cd p-message
+git add .
+git commit -m init
+git push origin master
+cd ..
+cd i-lanshi
+git add .
+git commit -m init
+git push origin master
+cd ..
+cd s-planmng
+git add .
+git commit -m init
+git push origin master
+cd ..
+cd platform-manager
+git add .
+git commit -m init
+git push origin master
+cd ..
+cd gateway
+git add .
+git commit -m init
+git push origin master
+cd ..
+cd s-order
+git add .
+git commit -m init
+git push origin master
+cd ..
+cd p-gateway
+git add .
+git commit -m init
+git push origin master
+cd ..
+cd certificate-of-quality
+git add .
+git commit -m init
+git push origin master
+cd ..
+cd s-invmng
+git add .
+git commit -m init
+git push origin master
+cd ..
+cd nomespc
+git add .
+git commit -m init
+git push origin master
+cd ..
+cd auth
+git add .
+git commit -m init
+git push origin master
+cd ..
+

@@ -1,0 +1,11 @@
+add-apt-repository ppa:nilarimogard/webupd8    #添加PPA更新源
+apt-get update                                 #刷新更新源列表
+apt-get install prime-indicator                #安装双显卡切换指示器
+
+
+gedit /etc/modprobe.d/blacklist.conf    
+blacklist nouveau
+
+service lightdm stop           #关闭图形系统
+apt-get install nvidia-375     #通过官方源安装驱动，这里的375需要按照你的系统推荐的版本号修改
+service lightdm start          #启动图形系统

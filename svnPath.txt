@@ -1,0 +1,13 @@
+http://192.168.0.20/svn/auth/trunk
+http://192.168.0.20/svn/equipManager/trunk
+http://192.168.0.20/svn/gateway/trunk
+http://192.168.0.20/svn/i-lanshi/trunk
+http://192.168.0.20/svn/p-gateway/trunk
+http://192.168.0.20/svn/p-message/trunk
+http://192.168.0.20/svn/registry/trunk
+http://192.168.0.20/svn/s-base/trunk
+http://192.168.0.20/svn/s-equip/trunk
+http://192.168.0.20/svn/s-invmng/trunk
+http://192.168.0.20/svn/s-order/trunk
+http://192.168.0.20/svn/s-planmng/trunk
+http://192.168.0.20/svn/s-public/trunk

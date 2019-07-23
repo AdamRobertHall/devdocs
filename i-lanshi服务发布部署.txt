@@ -1,0 +1,19 @@
+
+#将11上i-lanshi服务打tag
+#将11上i-lanshi服务镜像推送到230docker仓库中
+docker tag  i-lanshi 120.76.115.230:8443/i-lanshi:1903r32
+docker push 120.76.115.230:8443/i-lanshi:1903r32
+
+
+#10.10.10.222账号密码root 123456
+#更改10.10.10.222上  /root/docker-compose.yml文件   将tag替换
+docker-compose up -d 命令更新重启容器
+  
+
+docker tag  i-lanshi 192.168.0.12/i-lanshi:1903r32
+docker push 192.168.0.12/i-lanshi:1903r32
+
+curl -X PUT "http://10.10.10.215:8080/lanshi/planmng/enterInv?DispatchingPlanCode=123" -H "accept: application/json"
+
+docker tag  s-planmng 120.76.115.230:8443/s-planmng:1903r2a
+docker push 120.76.115.230:8443/s-planmng:1903r2a

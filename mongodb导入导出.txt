@@ -1,0 +1,2 @@
+mongoexport -h 10.10.10.222:12011 -u root -p nomes_8129@yimym -d yimym -c config_data -o ~/config_data.json
+mongoimport -u root -p nomes_8129@yimym -d yimym -c config_data --file ~/config_data.json

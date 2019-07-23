@@ -1,0 +1,27 @@
+﻿demo系统账号: 18165383639
+密码： abc123456
+
+mongodump -h 192.168.0.11 -u root -p nomes_8129@yimym -d yimym -o d:/mongo/auth 
+mongodump -h 192.168.0.12:12011 -u root -p nomes_8129@yimym -d yimym -o d:/mongo/auth12
+mongodump -h 192.168.0.12:12011 -u root -p nomes_8129@yimym -d admin -o d:/mongo/auth12
+mongodump -h 120.76.115.230:12011 -u root -p nomes_8129@yimym -d yimym -o d:/mongo/auth230
+--authenticationDatabase admin
+
+mongorestore -h 127.0.0.1 -d auth12 --dir d:/mongo/auth12/yimym
+mongorestore -h 127.0.0.1 -d admin --dir d:/mongo/auth12/admin
+mongodb.host=192.168.0.11
+mongodb.port=27017
+mongodb.db=yimym
+mongodb.username=root
+mongodb.password=nomes_8129@yimym
+
+
+use admin
+
+db.createUser(
+  {
+    user: "root",
+    pwd: "123456gqh",
+    roles: [ { role: "userAdminAnyDatabase", db: "admin" } ]
+  }
+)

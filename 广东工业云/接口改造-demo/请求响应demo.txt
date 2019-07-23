@@ -1,0 +1,67 @@
+--请求----------------------------------------
+
+RSACoder rsaCoder = new RSACoder();
+        //生成密钥对
+        Map<String, Object> keyMap = RSACoder.initKey();
+        //公钥
+        String publicKey = RSACoder.getPublicKey(keyMap);
+        //私钥
+        String privateKey = RSACoder.getPrivateKey(keyMap);
+        System.out.println("公钥：/n" + publicKey);
+        System.out.println("私钥：/n" + privateKey);
+        RestTemplate restTemplate = new RestTemplate();
+
+        MultiValueMap<String, Object> map = new LinkedMultiValueMap<>();
+        map.add("userId", "admin");
+        map.add("beginTime", "20190307183618");
+        map.add("endTime", "20190308183618");
+        HttpHeaders headers = new HttpHeaders();
+        String url="http://122.13.1.153:6779/wc/testAESandRsa";
+        headers.add("RSAPublicKey", publicKey);
+        HttpEntity<MultiValueMap<String, Object>> entity = new HttpEntity<>(map, headers);
+        ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.POST, entity, String.class);
+        JsonMapper mapper = new JsonMapper();
+        Map returnMap = mapper.fromJson(response.getBody(),Map.class);
+        System.out.println(returnMap.get("data"));
+        ObjectMapper objectMapper = new ObjectMapper();
+        CryptoData data = objectMapper.convertValue(returnMap.get("data"), CryptoData.class);
+        System.out.println("结果:"+data);
+        System.out.println(CryptoUtil.decrypt(data,privateKey));
+
+
+--响应————————————————————————————————
+需要你们自己添加ip白名单
+
+ @RequestMapping("testAESandRsa")
+    @ResponseBody
+    public Object testAESandRsa(HttpServletRequest request)throws Exception {
+        //返回对象
+        Map<String,Object> returnMap = new HashMap<>();
+        try{
+            //获取公钥
+            String RSAPublicKey = request.getHeader("RSAPublicKey");
+
+            //获取参数
+            String userId = request.getParameter("userId");
+            String beginTime = request.getParameter("beginTime");
+            String endTime = request.getParameter("endTime");
+            //获取用户数据
+            List<SysLoginLog> dataList = sysLoginLogService.getLogByTimerangeAndUserId(beginTime,endTime,userId);
+            //返回参数
+            JsonMapper mapper = new JsonMapper();
+            //加密数据
+            CryptoData cryptoData= CryptoUtil.encrypt(mapper.toJson(dataList),RSAPublicKey);
+            returnMap.put("respCode","0");
+            returnMap.put("respMsg","");
+            returnMap.put("data",cryptoData);
+        }catch(Exception e){
+            //记录日志
+            returnMap.put("respCode","1");
+            returnMap.put("respMsg",e.getMessage());
+            returnMap.put("data",null);
+        }
+
+
+        return returnMap;
+    }
+

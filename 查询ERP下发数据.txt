@@ -1,0 +1,4 @@
+新
+db.getCollection('erpTransferData').find({'data.DispatchingPlanCode':'103-687752'}).sort({'createdAt':-1})
+旧
+db.getCollection('erpTransferData').find({'data.dispatchingPlanCode':'103-610755'}).sort({'createdAt':-1})

@@ -1,0 +1,24 @@
+# ubuntu
+sudo apt-get install wget
+wget -q -O - https://pkg.jenkins.io/debian-stable/jenkins.io.key | sudo apt-key add -
+vim /etc/apt/sources.list
+deb https://pkg.jenkins.io/debian-stable binary/
+sudo apt-get update
+sudo apt-get install jenkins
+
+# RedHat Fedora CentOS
+sudo yum -y install wget
+sudo wget -O /etc/yum.repos.d/jenkins.repo https://pkg.jenkins.io/redhat-stable/jenkins.repo
+sudo rpm --import https://pkg.jenkins.io/redhat-stable/jenkins.io.key
+sudo yum -y install jenkins
+
+Jenkins插件镜像源
+https://mirrors.tuna.tsinghua.edu.cn/jenkins/updates/update-center.json
+http://updates.jenkins-ci.org/update-center.json
+
+配置jenkins用户
+此时还不能立即构建，因为jenkins触发脚本并不是root用户，因此需要将jenkins免密码，并将用户加入到docker组，否则获取不到容器ID
+usermod -G docker jenkins
+
+
+wget --no-check-certificate --no-cookies --header "Cookie: oraclelicense=accept-securebackup-cookie" http://download.oracle.com/otn-pub/java/jdk/8u161-b12/2f38c3b165be4555a1fa6e98c45e0808/jdk-8u161-linux-x64.tar.gz

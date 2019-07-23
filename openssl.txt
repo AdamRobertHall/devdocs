@@ -1,0 +1,25 @@
+
+openssl req -nodes -subj "/C=CN/ST=Xian/L=Xian/CN=adam.cn" -newkey rsa:2048 -keyout adam.cn.key -out adam.cn.csr
+openssl x509 -req -days 3650 -in adam.cn.csr -signkey adam.cn.key -out adam.cn.crt
+openssl x509 -req -in adam.cn.csr -CA adam.cn.crt -CAkey adam.cn.key -CAcreateserial -out adam.cn.crt -days 3650
+
+
+C:\Windows\System32\drivers\etc\hosts
+/etc/hosts
+
+192.168.0.184  adam.cn
+
+centos
+yum install ca-certificates
+update-ca-trust enable
+cp adam.cn.crt /etc/pki/ca-trust/source/anchors/
+update-ca-trust extract
+
+ubuntu
+cp adam.cn.crt /usr/share/ca-certificates
+update-ca-certificates
+
+dpkg-reconfigure ca-certificates
+
+update-ca-certificates
+systemctl restart docker

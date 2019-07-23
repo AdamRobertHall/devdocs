@@ -1,0 +1,22 @@
+一、查看Linux内核版本命令（两种方法）：
+
+1、cat /proc/version
+
+
+2、uname -a
+
+
+二、查看Linux系统版本的命令（3种方法）：
+
+1、lsb_release -a，即可列出所有版本信息：
+
+
+这个命令适用于所有的Linux发行版，包括RedHat、SUSE、Debian…等发行版。
+
+2、cat /etc/redhat-release，这种方法只适合Redhat系的Linux：
+
+[root@S-CentOS home]# cat /etc/redhat-release
+
+CentOS release 6.5 (Final)
+
+3、cat /etc/issue，此命令也适用于所有的Linux发行版。

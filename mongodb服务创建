@@ -1,0 +1,6 @@
+
+mongo.config
+dbpath=E:\mongo\data\db
+logpath=E:\mongo\logs\log.txt
+
+mongod --config "E:\mongo\mongo.config" --install --serviceName "MongoDB"
