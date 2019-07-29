@@ -1,0 +1,22 @@
+Windows Registry Editor Version 5.00
+[HKEY_CLASSES_ROOT\.docx]
+@="Word.Document.12"
+"Content Type"="application/msword"
+[HKEY_CLASSES_ROOT\.docx\OpenWithList]
+[HKEY_CLASSES_ROOT\.docx\OpenWithList\WordPad.exe]
+@=""
+[HKEY_CLASSES_ROOT\.docx\PersistentHandler]
+@="{D969A300-E7FF-11d0-A93B-00A0C90F2719}"
+[HKEY_CLASSES_ROOT\.docx\ShellNew]
+[HKEY_CLASSES_ROOT\.docx\Word.Document.12]
+[HKEY_CLASSES_ROOT\.docx\Word.Document.12\ShellNew]
+"FileName"="winword.docx"
+[HKEY_CLASSES_ROOT\.docx\Word.Document.12]
+[HKEY_CLASSES_ROOT\.docx\Word.Document.12\ShellNew]
+"FileName"="winword10.docx"
+[HKEY_CLASSES_ROOT\.docx\WordDocument]
+[HKEY_CLASSES_ROOT\.docx\WordDocument\ShellNew]
+"FileName"="winword2.docx"
+[HKEY_CLASSES_ROOT\.docx\WordPad.Document.1]
+[HKEY_CLASSES_ROOT\.docx\WordPad.Document.1\ShellNew]
+"NullFile"=""
