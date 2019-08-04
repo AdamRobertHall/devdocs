@@ -12,9 +12,19 @@ create database whgk DEFAULT CHARACTER SET UTF8 COLLATE UTF8_GENERAL_CI;
 create database cqtm DEFAULT CHARACTER SET UTF8 COLLATE UTF8_GENERAL_CI;
 create database demo DEFAULT CHARACTER SET UTF8 COLLATE UTF8_GENERAL_CI;
 create database xxsy DEFAULT CHARACTER SET UTF8 COLLATE UTF8_GENERAL_CI;
+create database mydatasource DEFAULT CHARACTER SET UTF8 COLLATE UTF8_GENERAL_CI;
+drop database db201907122331291;
+create database db201907122331291 DEFAULT CHARACTER SET UTF8 COLLATE UTF8_GENERAL_CI;
+mysqldump -R -u root -p mydatasource > mydatasource.sql
+mysql -u root -p db201907122331291 < mydatasource.sql
+
+drop database mydatasource;
+create database mydatasource DEFAULT CHARACTER SET UTF8 COLLATE UTF8_GENERAL_CI;
+mysqldump -R -h 192.168.0.12 -P 12102 -u root -p mydatasource | mysql -u root -p mydatasource
 登录数据库
 mysql -u root -p nomes_8129@yimym
 复制数据库
+mysqldump -R -h 120.76.44.153 -P 12011 -u root -p mydatasource | mysql -u root -p mydatasource
 mysqldump -R -h 39.108.194.135 -P 12011 -u root -p yimym | mysql -u root -p whgk
 mysqldump -R -h 139.129.230.77 -P 12011 -u root -p yimym | mysql -u root -p demo
 mysqldump -R -h 119.23.172.168 -P 12011 -u root -p yimym | mysql -u root -p sxhf
