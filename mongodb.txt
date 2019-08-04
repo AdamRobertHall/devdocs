@@ -43,7 +43,8 @@ mongoimport -d mongotest -c users --file /home/users.json
 MongoDB数据库备份
 mongodump -h dbhost -d dbname -o dbdirectory
 mongodump -h 120.76.115.230 --port 12011 -u root -p nomes_8129@yimym -d yimym -o /mongodump190723
-mongodump -u root -p nomes_8129@yimym -d yimym -o /home/mongodump11/
+mongodump -u root -p nomes_8129@yimym -d yimym -o /mongodump11
+mongorestore -u root -p nomes_8129@yimym -d yimym --dir /mongodump11/yimym
 MongoDB数据库恢复
 mongorestore -h dbhost -d dbname --dir dbdirectory
 mongorestore -h 192.168.0.11 --port 11011 -u root -p nomes_8129@yimym -d yimym --dir /home/mongodump11/yimym

@@ -22,3 +22,29 @@ usermod -G docker jenkins
 
 
 wget --no-check-certificate --no-cookies --header "Cookie: oraclelicense=accept-securebackup-cookie" http://download.oracle.com/otn-pub/java/jdk/8u161-b12/2f38c3b165be4555a1fa6e98c45e0808/jdk-8u161-linux-x64.tar.gz
+
+jenkins docker 版本
+Administartor 5ec0b25a16504e80bef6ecb871e16976
+docker run -d 
+-p 80:8080 
+-p 50000:50000 
+-v jenkins:/var/jenkins_home 
+-v /etc/localtime:/etc/localtime 
+--name jenkins docker.io/jenkins/jenkins
+
+docker run -d -i -t -u root --restart=always \
+-e JAVA_OPTS=-Duser.timezone=Asia/Shanghai \
+-p 9999:8080 \
+-p 50000:50000 --name jenkins \
+-v /etc/localtime:/etc/localtime \
+-v /usr/bin/docker:/usr/bin/docker \
+-v /home/.m2:/root/.m2 \
+-v /root:/root \
+-v /home:/root/yimym \
+-v /var/run/docker.sock:/var/run/docker.sock \
+-v /home/jenkins_home:/var/jenkins_home \
+-v /usr/local/maven:/usr/local/maven \
+-v /usr/local/node-v10.16.0-linux-x64:/usr/local/node \
+jenkins/jenkins:lts  
+
+-v /usr/lib64/libltdl.so.7:/usr/lib/x86_64-linux-gnu/libltdl.so.7 \
