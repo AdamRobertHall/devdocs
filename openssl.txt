@@ -9,17 +9,32 @@ C:\Windows\System32\drivers\etc\hosts
 
 192.168.0.184  adam.cn
 
-centos
+Linux (Ubuntu, Debian)
+添加证书：
+1.复制 CA 文件到目录： /usr/local/share/ca-certificates/
+2.执行:
+sudo cp foo.crt /usr/local/share/ca-certificates/foo.crt
+3.更新 CA 证书库:
+sudo update-ca-certificates
+移除证书：
+1.Remove your CA.
+2.Update the CA store:
+sudo update-ca-certificates --fresh
+Restart Kerio Connect to reload the certificates in the 32-bit versions or Debian 7.
+
+Linux (CentOs 6)
+添加证书：
+1.安装 ca-certificates package:
 yum install ca-certificates
-update-ca-trust enable
-cp adam.cn.crt /etc/pki/ca-trust/source/anchors/
+2.启用dynamic CA configuration feature:
+update-ca-trust force-enable
+3.Add it as a new file to /etc/pki/ca-trust/source/anchors/:
+cp foo.crt /etc/pki/ca-trust/source/anchors/
+4.执行:
 update-ca-trust extract
+Restart Kerio Connect to reload the certificates in the 32-bit version.
 
-ubuntu
-cp adam.cn.crt /usr/share/ca-certificates
-update-ca-certificates
-
-dpkg-reconfigure ca-certificates
-
-update-ca-certificates
-systemctl restart docker
+Linux (CentOs 5)
+添加证书：
+Append your trusted certificate to file /etc/pki/tls/certs/ca-bundle.crt
+cat foo.crt >> /etc/pki/tls/certs/ca-bundle.crt
