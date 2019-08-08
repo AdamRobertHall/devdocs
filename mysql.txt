@@ -15,23 +15,23 @@ create database xxsy DEFAULT CHARACTER SET UTF8 COLLATE UTF8_GENERAL_CI;
 create database mydatasource DEFAULT CHARACTER SET UTF8 COLLATE UTF8_GENERAL_CI;
 drop database db201907122331291;
 create database db201907122331291 DEFAULT CHARACTER SET UTF8 COLLATE UTF8_GENERAL_CI;
-mysqldump -R -u root -p mydatasource > mydatasource.sql
+mysqldump -R -E -u root -p mydatasource > mydatasource.sql
 mysql -u root -p db201907122331291 < mydatasource.sql
 
 drop database mydatasource;
 create database mydatasource DEFAULT CHARACTER SET UTF8 COLLATE UTF8_GENERAL_CI;
-mysqldump -R -h 192.168.0.12 -P 12102 -u root -p mydatasource | mysql -u root -p mydatasource
+mysqldump -R -E -h 192.168.0.12 -P 12102 -u root -p mydatasource | mysql -u root -p mydatasource
 登录数据库
 mysql -u root -p nomes_8129@yimym
 复制数据库
-mysqldump -R -h 120.76.44.153 -P 12011 -u root -p mydatasource | mysql -u root -p mydatasource
-mysqldump -R -h 39.108.194.135 -P 12011 -u root -p yimym | mysql -u root -p whgk
-mysqldump -R -h 139.129.230.77 -P 12011 -u root -p yimym | mysql -u root -p demo
-mysqldump -R -h 119.23.172.168 -P 12011 -u root -p yimym | mysql -u root -p sxhf
-mysqldump -R -h 47.107.55.24 -P 12011 -u root -p yimym | mysql -u root -p nyhc
-mysqldump -R -h 119.23.147.92 -P 12011 -u root -p yimym | mysql -u root -p shjy  18691083831  上海井研精密工具有限公司
-mysqldump -R -h 120.76.53.96 -P 12011 -u root -p yimym | mysql -u root -p szttx  yaoyt.szttx 深圳拓腾兴科技有限公司
-mysqldump -R -h 120.77.59.210 -P 12011 -u root -p yimym | mysql -u root -p whhtc
-mysqldump -R -h 47.112.99.254 -P 12011 -u root -p yimym | mysql -u root -p nbxsc yaoyt.nbxsc  宁波新思创机电科技股份有限公司
-mysqldump -R -h 120.79.84.107 -P 12011 -u root -p db00xjdz | mysql -u root -p xjdz
-mysqldump -R -h 120.77.56.165 -P 12011 -u root -p yimym | mysql -u root -p cqtm 	15923929716 重庆铁马专用车有限公司
+mysqldump -R -E -h 120.76.44.153 -P 12011 -u root -p mydatasource | mysql -u root -p mydatasource
+mysqldump -R -E -h 39.108.194.135 -P 12011 -u root -p yimym | mysql -u root -p whgk
+mysqldump -R -E -h 139.129.230.77 -P 12011 -u root -p yimym | mysql -u root -p demo
+mysqldump -R -E -h 119.23.172.168 -P 12011 -u root -p yimym | mysql -u root -p sxhf
+mysqldump -R -E -h 47.107.55.24 -P 12011 -u root -p yimym | mysql -u root -p nyhc
+mysqldump -R -E -h 119.23.147.92 -P 12011 -u root -p yimym | mysql -u root -p shjy  18691083831  上海井研精密工具有限公司
+mysqldump -R -E -h 120.76.53.96 -P 12011 -u root -p yimym | mysql -u root -p szttx  yaoyt.szttx 深圳拓腾兴科技有限公司
+mysqldump -R -E -h 120.77.59.210 -P 12011 -u root -p yimym | mysql -u root -p whhtc
+mysqldump -R -E -h 47.112.99.254 -P 12011 -u root -p yimym | mysql -u root -p nbxsc yaoyt.nbxsc  宁波新思创机电科技股份有限公司
+mysqldump -R -E -h 120.79.84.107 -P 12011 -u root -p db00xjdz | mysql -u root -p xjdz
+mysqldump -R -E -h 120.77.56.165 -P 12011 -u root -p yimym | mysql -u root -p cqtm 	15923929716 重庆铁马专用车有限公司
