@@ -1,5 +1,7 @@
+开发环境安装的docker版本为18.06.1-ce, 对应docker-compose文件版本为v3.2
+测试环境和生产环境安装的docker版本为17.05.0-ce, 对应docker-compose文件版本为v2.0
 #查看docker版本
-$ docker version
+$ docker -v
 # 检索image  
 $ docker search image_name  
 # 下载image  

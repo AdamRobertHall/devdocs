@@ -1,0 +1,54 @@
+后端使用的rancher版本如下
+Rancher 	v1.1.3
+Cattle 	v0.165.8.1
+User Interface 	v1.1.12
+Rancher Compose 	v0.8.6
+支持的docker-compose.yml版本为v2.0
+# rancher-compose完全兼容docker-compose命令，并提供更多的rancher参数
+1. 重新部署或升级整个栈的服务 （在部署企业时使用）
+	/usr/local/bin/rancher-compose 
+	# 要连接的rancher-server服务器url
+	--url http://120.76.115.230:88/ 
+	# rancher账户
+	--access-key 47845FC232E015B132C8 
+	# rancher账户密码
+	--secret-key jvZSe4ocuq9AFi7S8yxptNUUWJomx4i5SxQCkqvB 
+	# rancher项目名称（相当于docker栈名称）
+	--project-name entdata 
+	# docker-compose.yml文件，这里根据/root/manager/config/application.yml配置文件生成
+	--file /tmp/yamls/59295397e4b044992ce2a6d4 
+	up 
+	# 在后台运行升级
+	-d 
+	# 升级完成后自动确认升级成功，删除旧的容器
+	--confirm-upgrade
+	# 将命令运行重定向到指定文件的同时输出到控制台
+	 | tee -a /tmp/logs/59295397e4b044992ce2a6d4 
+2. 仅更新docker-compose.yml配置中有变化的服务 （在11向12推送单个服务时调用）
+	/root/sh/rancher-compose
+	--url http://192.168.0.12:88
+	--access-key 59FC3AFE63CFADCA3966
+	--secret-key RgRspGR3LFFTxvLUqAryhR1ZurhxFJdzWc11WLgf
+	--project-name hx 
+	--file /home/m-relman/mysql.yml up 
+	# 仅升级在docker-compose.yml中配置有变化的服务
+	--upgrade 
+	--confirm-upgrade -d
+
+--------------------------------------------
+rancher-compose up 命令详细说明
+选项	描述
+--pull, -p	升级前，在每台运行该容器的主机上执行docker pull操作，尝试获取新镜像
+-d	在后台运行升级
+--upgrade, -u, --recreate	仅升级在docker-compose.yml中配置有变化的服务
+--force-upgrade, --force-recreate	不论服务的配置是否有变化，全部进行升级
+--confirm-upgrade, -c	升级完成后自动确认升级成功，删除旧的容器
+--rollback, -r	回滚到之前的版本
+--batch-size “2”	每批升级的容器个数
+--interval “1000”	每批升级的时间间隔
+
+rancher api 使用
+https://rancher.com/docs/rancher/v1.6/en/api/v2-beta/
+
+
+
