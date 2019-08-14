@@ -24,5 +24,6 @@ ln -sf /lib/systemd/system/graphical.target /etc/systemd/system/default.target
 ------------------------------------------------------------------------------
 安装 ssh
 yum install -y openssl openssh-server
+yum remove openssl openssh-server
 vim /etc/ssh/sshd_config
 PermitRootLogin=yes

@@ -1,3 +1,6 @@
+查看docker registry 镜像版本列表
+https://192.168.0.12/v2/s-base/tags/list
+
 开发环境安装的docker版本为18.06.1-ce, 对应docker-compose文件版本为v3.2
 测试环境和生产环境安装的docker版本为17.05.0-ce, 对应docker-compose文件版本为v2.0
 #查看docker版本
@@ -10,6 +13,10 @@ $ docker pull image_name
 $ docker images  
 #删除镜像
 $ docker rmi image_name
+# 打tag
+docker tag centos:latest 192.168.0.12/centos:20190812
+# 向镜像仓库推送镜像
+docker push 192.168.0.12/centos:20190812
 #启动容器
 $ docker run 
 # 列出当前所有正在运行的container
