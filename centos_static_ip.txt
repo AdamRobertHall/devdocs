@@ -2,21 +2,19 @@ virtualbox下安装centos7 使用网卡桥接方式设置静态IP
 
 1.设置虚拟机静态ip
 vi /etc/sysconfig/network-scripts/ifcfg-enp0s3
-
-
-
-
-
 BOOTPROTO=static
 ONBOOT=yes
-IPADDR=192.168.0.201
+IPADDR=192.168.0.230
 NETMASK=255.255.255.0
 GATEWAY=192.168.0.1
 DNS1=218.30.19.40
 DNS2=61.134.1.4
 
 2.修改网络设置
-vi/etc/sysconfig/network
+vi /etc/sysconfig/network
 NETWORKING=yes
 HOSTNAME=centos7-adam
 GATEWAY=192.168.0.1
+
+3.重启网络服务
+systemctl restart network.service
