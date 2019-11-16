@@ -4,7 +4,7 @@ docker pull kylemanna/openvpn
 
 OVPN_DATA="/root/ovpn-data"
 // 下面的全局变量换成你的服务器的外网ip
-IP="xxx.xxx.xxx.xxx"
+IP="外网IP+端口号"
 mkdir ${OVPN_DATA}
 
 // 第二步
