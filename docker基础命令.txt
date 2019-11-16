@@ -34,7 +34,7 @@ $ docker restart Name/ID
 # 从一个容器中取日志
 $docker logs Name/ID
 # 读取docker容器日志的后一千行信息的命令
-$ docker logs --tail=1000 Name/ID
+$ docker logs --tail 1000 Name/ID
 # 查看栈列表
 docker stack ls
 # 删除栈
