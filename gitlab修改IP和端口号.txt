@@ -1,0 +1,34 @@
+1、 编辑gitlab.yml配置文件
+vim /opt/gitlab/embedded/service/gitlab-rails/config/gitlab.yml
+找到host，并修改为你要配置的域名或IP
+
+ ## GitLab settings
+  gitlab:
+    ## Web server settings (note: host is the FQDN, do not include http://)
+    host: 192.168.0.201
+    port: 80
+    https: false
+2、 编辑gitlab.rb文件
+vim /etc/gitlab/gitlab.rb
+找到external_url，修改成对应的域名或IP
+
+
+## Url on which GitLab will be reachable.
+## For more details on configuring external_url see:
+## https://gitlab.com/gitlab-org/omnibus-gitlab/blob/master/doc/settings/configuration.md#configuring-the-external-url-for-gitlab
+external_url 'http://192.168.0.201'
+
+3、修改端口
+vim /etc/gitlab/gitlab.rb
+external_url 'http://我的服务器地址:8081'
+nginx['listen_port'] = 8081
+
+vim /var/opt/gitlab/nginx/conf/gitlab-http.conf
+listen *:8081;
+server_name localhost;
+if ($http_host = "") {
+ set $http_host_with_default "localhost:8081";
+}
+
+4、 重启GitLab服务
+gitlab-ctl restart
