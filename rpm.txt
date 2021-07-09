@@ -1,0 +1,2 @@
+
+rpm -ivh  --force --nodeps libsepol-2.5-10.el7.x86_64.rpm
