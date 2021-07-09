@@ -1,0 +1,37 @@
+# 第1步：生成私钥
+openssl genrsa -des3 -out ca.key 2048
+# 第2步：生成CSR（证书签名请求）
+openssl req -new -key ca.key -out ca.csr -config /etc/pki/tls/openssl.cnf
+# 第3步：删除私钥中的密码
+openssl rsa -in ca.key -out ca.key
+# 第4步：生成自签名证书
+openssl x509 -req -days 3650 -in ca.csr -signkey ca.key -out ca.crt
+
+一, 编辑openssl.cnf,在[v3_ca]下面添加：subjectAltName = IP:IP地址
+    注意, 直接写成123.56.157.144就行, 不用改成192或是其它地址
+
+[ v3_ca ]
+
+subjectAltName = IP:123.56.157.144
+
+
+二, 生成证书相关文件(服务器单向认证如下)
+
+openssl genrsa -out ca.key 2048 
+openssl req -x509 -new -nodes -key ca.key -subj "/CN=adamoo.com" -days 5000 -out ca.crt
+openssl req -new -key ca.key -subj "/CN=adamoo.com" -out ca.csr
+openssl x509 -req -in ca.csr -CA ca.crt -CAkey ca.key -CAcreateserial -out ca.crt -days 5000
+
+第4步里的adamoo.com就是代码里要访问的域名
+
+三, 修改/etc/hosts 添加 192.168.1.41 adamoo.com
+[radamoot@localhost my]# cat /etc/hosts
+
+127.0.0.1   localhost localhost.localdomain localhost4 localhost4.localdomain4
+::1         localhost localhost.localdomain localhost6 localhost6.localdomain6
+192.168.1.41 adamoo.com
+--------------------- 
+作者：weixin_40592935 
+来源：CSDN 
+原文：https://blog.csdn.net/weixin_40592935/article/details/85112158 
+版权声明：本文为博主原创文章，转载请附上博文链接！

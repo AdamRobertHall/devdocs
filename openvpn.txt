@@ -1,0 +1,78 @@
+五分钟利用docker搭建好openvpn服务环境
+我的服务器系统是centos 7.0，将下面一步步贴到shell（ssh、vps）执行即可。
+
+# 第一步
+yum install docker
+docker pull kylemanna/openvpn
+ 
+OVPN_DATA="/root/ovpn-data"
+mkdir ${OVPN_DATA}
+# 下面的全局变量换成你的服务器的外网ip
+IP="120.77.215.10"
+
+ 
+# 第二步
+docker run -v ${OVPN_DATA}:/etc/openvpn --rm kylemanna/openvpn ovpn_genconfig -u tcp:#${IP}
+ 
+# 第三步
+docker run -v ${OVPN_DATA}:/etc/openvpn --rm -it kylemanna/openvpn ovpn_initpki
+ 
+# ---------------------------------------------------------
+Enter PEM pass phrase: 输入 123456gqh （你是看不见的）
+Verifying - Enter PEM pass phrase: 输入 123456gqh （你是看不见的）
+Common Name (eg: your user, host, or server name) [Easy-RSA CA]:回车一下
+Enter pass phrase for /etc/openvpn/pki/private/ca.key:输入 123456gqh 
+# ---------------------------------------------------------
+ 
+# 第五步
+docker run -v ${OVPN_DATA}:/etc/openvpn --rm -it kylemanna/openvpn easyrsa build-client-full CLIENTNAME nopass
+ 
+# ---------------------------------------------------------
+Enter pass phrase for /etc/openvpn/pki/private/ca.key:输入  123456gqh
+# ---------------------------------------------------------
+ 
+# 第六步
+docker run -v ${OVPN_DATA}:/etc/openvpn --rm kylemanna/openvpn ovpn_getclient CLIENTNAME > ${OVPN_DATA}/CLIENTNAME.ovpn
+
+==================
+# 第五步
+docker run -v ${OVPN_DATA}:/etc/openvpn --rm -it kylemanna/openvpn easyrsa build-client-full adam nopass
+docker run -v ${OVPN_DATA}:/etc/openvpn --rm kylemanna/openvpn ovpn_getclient adam> ${OVPN_DATA}/adam.ovpn
+docker run -v ${OVPN_DATA}:/etc/openvpn --rm -it kylemanna/openvpn easyrsa build-client-full oo nopass
+docker run -v ${OVPN_DATA}:/etc/openvpn --rm kylemanna/openvpn ovpn_getclient oo> ${OVPN_DATA}/oo.ovpn
+docker run -v ${OVPN_DATA}:/etc/openvpn --rm -it kylemanna/openvpn easyrsa build-client-full zyd nopass
+docker run -v ${OVPN_DATA}:/etc/openvpn --rm kylemanna/openvpn ovpn_getclient zyd> ${OVPN_DATA}/zyd.ovpn
+==================
+ 
+# 第七步
+docker run --name openvpn -v ${OVPN_DATA}:/etc/openvpn -d -p 1194:1194 --privileged kylemanna/openvpn
+经过以上七个步骤，你将会在/root/ovpn-data中看到一个CLIENTNAME.ovpn文件，将其下载到本地，利用OpenVPN GUI连接，即可。
+
+经过整理后即：
+
+yum install docker
+docker pull kylemanna/openvpn
+OVPN_DATA="/root/ovpn-data"IP="123.123.123.123"mkdir ${OVPN_DATA}
+docker run -v ${OVPN_DATA}:/etc/openvpn --rm kylemanna/openvpn ovpn_genconfig -u tcp:#${IP}
+docker run -v ${OVPN_DATA}:/etc/openvpn --rm -it kylemanna/openvpn ovpn_initpki
+docker run -v ${OVPN_DATA}:/etc/openvpn --rm -it kylemanna/openvpn easyrsa build-client-full CLIENTNAME nopass
+docker run -v ${OVPN_DATA}:/etc/openvpn --rm kylemanna/openvpn ovpn_getclient CLIENTNAME > ${OVPN_DATA}/CLIENTNAME.ovpn
+docker run --name openvpn -v ${OVPN_DATA}:/etc/openvpn -d -p 1194:1194 --privileged kylemanna/openvpn
+OPENVPN连接
+
+下载openvpn，http:#openvpn.net/index.php/open-source/downloads.html，并安装。 
+将CLIENTNAME.ovpn复制到C:\Program Files\OpenVPN\config中。
+
+编辑CLIENTNAME.ovpn文件，将里面的udp改成tcp。至于为什么，嘿嘿嘿，听说免什么什么流量的。
+
+运行OpenVPN GUI，在桌面右下角，可以看到OpenVPN 的图标。右键点击connect即可连接VPN。不信，你可以在百度输入IP，查看下自己的IP。
+
+
+撤销签署的证书(删除用户)
+进入docker
+
+easyrsa revoke client1
+easyrsa gen-crl
+cp /etc/openvpn/pki/crl.pem /etc/openvpn/crl.pem
+编辑${OVPN_DATA}/openvpn.conf
+crl-verify /etc/openvpn/crl.pe
